@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import RestaurantFinder from './components/RestaurantFinder';
+import { users, venues } from './data';
 
 function App() {
   return (
@@ -8,7 +10,7 @@ function App() {
         <h1>Restaurant Finder App</h1>
       </header>
       <main>
-
+        <RestaurantFinder users={users} venues={venues} />
       </main>
     </div>
   );

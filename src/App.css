@@ -1,4 +1,22 @@
 .App {
+  margin: 30px;
+}
+
+.App-header {
   text-align: center;
+}
+
+#user-section {
+  width: 600px;
+  height: 100%;
+  background-color: #ffffffd7;
+  padding: 10px;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  margin-right: 0.625rem;
+  min-height: 1.25rem;
+  min-width: 1.25rem;
 }
 
