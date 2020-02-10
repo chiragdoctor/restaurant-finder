@@ -4,7 +4,7 @@ const PlacesToGo = ({ placesToGo }) => {
     const venues = placesToGo.map(venue => <li key={venue.name}>{ venue.name }</li>);
     return (
         <div>
-            Places to go: 
+            <p id="places-to-go">Places to go:</p>
             <ul>
                 { venues }     
             </ul>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const generateUserOptions = (onUserSelected, users) => {
+const generateUserList = (onUserSelected, users) => {
     return users.map(user => {
     return (
         <div key={user.name}>
@@ -15,7 +15,7 @@ const generateUserOptions = (onUserSelected, users) => {
 }
 
 const  Users = ({ onUserSelected, users }) => {
-    return generateUserOptions(onUserSelected, users);
+    return generateUserList(onUserSelected, users);
 }
 
 export default Users;

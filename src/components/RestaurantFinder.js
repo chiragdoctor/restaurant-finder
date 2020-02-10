@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import Users from "./User";
-import { getPlacesToGo } from "../lib/getPreferedVenues";
+import { getPlacesToGo, getPlacesToAviod } from "../lib/getPreferedVenues";
 import PlacesToGo from "./PlacesToGo";
+import PlacesToAviod from "./PlacesToAviod";
 
 class RestarantFinder extends Component {
     constructor(props) {
@@ -24,16 +26,36 @@ class RestarantFinder extends Component {
         const { users, venues } = this.props;
         const { addedUsers } = this.state;
         const placesToGo = getPlacesToGo(addedUsers, users, venues);
+        const placesToAviod = getPlacesToAviod(addedUsers, users, venues);
+
         return (
             <div>
                 <section id="user-section">
                     <Users onUserSelected={this.handleUserSelected} users={users} />
                 </section>
                 <hr />
-                { addedUsers.length > 0 ? <PlacesToGo placesToGo={placesToGo} /> : <div />}
+                { addedUsers.length > 0 ? 
+                <section id="places-to-go">
+                    <PlacesToGo placesToGo={placesToGo} /> 
+                </section>
+                : <div />}
+                
+                
+                { addedUsers.length > 0 && placesToAviod.length > 0 ? 
+                <section id="places-to-aviod">
+                    <PlacesToAviod placesToAviod={placesToAviod} /> 
+                </section>
+                : <div />}
+                
+                
             </div>
         )
     }
 }
+
+RestarantFinder.propTypes = {
+    users: PropTypes.array.isRequired,
+    venues: PropTypes.array.isRequired,
+};
 
 export default RestarantFinder;

@@ -1,3 +1,23 @@
+export const getMappedUsers = (users) => {
+    return users.map(user => {
+        return {
+            name: user.name,
+            wont_eat: user.wont_eat.map(food => food.toLowerCase()),
+            drinks: user.drinks.map(drink => drink.toLowerCase())
+        }
+      });
+};
+
+export const getMappedVenues = (venues) => {
+    return venues.map(venue => {
+        return {
+            name: venue.name,
+            food: venue.food.map(food => food.toLowerCase()),
+            drinks: venue.drinks.map(drink => drink.toLowerCase()),
+        }
+      });
+};
+
 export const getParticiatingUsers = (partcipatingUsers, users) => {
     return users.filter(user => {
         return partcipatingUsers.includes(user.name);
@@ -12,7 +32,6 @@ export const getPlacesToGo = (addedUsers, users, venues) => {
         // Get all the places where particiating users can eat at. 
         canEatVenues = canEatVenues.filter(venue => {
             const hasFood = venue.food.filter(food => !user.wont_eat.includes(food));
-            const hasDrinks = venue.drinks.filter(drink => user.drinks.includes(drink));
             return hasFood.length >= 1;
     
         });

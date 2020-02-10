@@ -3,22 +3,11 @@ import './App.css';
 import RestaurantFinder from './components/RestaurantFinder';
 import { users }  from './data/users';
 import { venues } from './data/venues';
+import { getMappedUsers, getMappedVenues } from "./lib/getPreferedVenues";
 
 function App() {
-  const Venues = venues.map(venue => {
-    return {
-        name: venue.name,
-        food: venue.food.map(food => food.toLowerCase()),
-        drinks: venue.drinks.map(drink => drink.toLowerCase()),
-    }
-  });
-  const Users = users.map(user => {
-    return {
-        name: user.name,
-        wont_eat: user.wont_eat.map(food => food.toLowerCase()),
-        drinks: user.drinks.map(drink => drink.toLowerCase())
-    }
-  });
+  const Venues = getMappedVenues(venues);
+  const Users = getMappedUsers(users);
   return (
     <div className="App">
       <header className="App-header">
