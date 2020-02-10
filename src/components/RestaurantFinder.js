@@ -1,36 +1,36 @@
 import React, { Component } from "react";
 import Users from "./User";
-import { getPrefferedVenues } from "../lib/getPrefferedVenues";
+import { getPlacesToGo } from "../lib/getPreferedVenues";
+import PlacesToGo from "./PlacesToGo";
 
 class RestarantFinder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            partcipatingUsers: []
+            addedUsers: []
         }
     }
 
     handleUserSelected = ({ target }) => {
         if(target.checked) {
-            this.setState({ partcipatingUsers: [...this.state.partcipatingUsers, target.value] });
+            this.setState({ addedUsers: [...this.state.addedUsers, target.value] });
         } else {
-            const removeUsersList = this.state.partcipatingUsers.filter(user => user !== target.value);
-            this.setState({ partcipatingUsers: removeUsersList });
+            const removeUsersList = this.state.addedUsers.filter(user => user !== target.value);
+            this.setState({ addedUsers: removeUsersList });
         }
     }
 
     render() {
         const { users, venues } = this.props;
-        const { partcipatingUsers } = this.state;
-        const prefferedVenues = getPrefferedVenues(partcipatingUsers, users, venues);
+        const { addedUsers } = this.state;
+        const placesToGo = getPlacesToGo(addedUsers, users, venues);
         return (
             <div>
                 <section id="user-section">
                     <Users onUserSelected={this.handleUserSelected} users={users} />
                 </section>
                 <hr />
-
-
+                { addedUsers.length > 0 ? <PlacesToGo placesToGo={placesToGo} /> : <div />}
             </div>
         )
     }
